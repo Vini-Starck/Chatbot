@@ -1,0 +1,40 @@
+from selenium import webdriver
+import time
+
+class WhatsappBot:
+    def __init__(self):
+        self.mensagens = ["Bom dia! Sou o bot do Sírio Libanes.", 
+        "1- Qual seu sexo: () homem () mulher\n 2- Tem idade acima de 60 anos? () sim ()não\n3- esta com sintomas de tosse? () sim () não\n4- está com febre? () Sim () não\n5- está com a garganta seca? () sim () não\n6- está com falta de ar? () sim () não\n7- está com dor de cabeça? () sim () não\n8- teve contato com outra pessoa que teve covid conformado? () sim () não "]
+        self.grupos = ["teste"]
+        options = webdriver.ChromeOptions()
+        options.add_argument('lang=pt-br')
+        self.driver = webdriver.Chrome(executable_path=r'./chromedriver.exe')
+
+    def EnviarMensagens(self):
+        # <span dir="auto" title="Hackathon Sírio " class="_35k-1 _1adfa _3-8er">Hackathon Sírio </span>
+        # <div tabindex="-1" class="_2A8P4">
+        # <span data-icon="send" class="">
+        print("asdasdasd")
+        self.driver.get('https://web.whatsapp.com')
+        time.sleep(10)
+        for grupo in self.grupos:
+            
+            grupo = self.driver.find_element_by_xpath(f"//span[@title='{grupo}']")
+            time.sleep(3)
+            grupo.click()
+
+            for mensagem in self.mensagens:
+
+                chat_box = self.driver.find_element_by_class_name('_2A8P4')
+                time.sleep(3)
+                chat_box.click()
+
+                chat_box.send_keys(mensagem)
+                    
+                botao_enviar = self.driver.find_element_by_xpath("//span[@data-icon='send']")
+                time.sleep(3)
+                botao_enviar.click()
+                time.sleep(5)
+
+bot = WhatsappBot()
+bot.EnviarMensagens()
