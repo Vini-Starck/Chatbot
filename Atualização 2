@@ -3,9 +3,28 @@ import time
 
 class WhatsappBot:
     def __init__(self):
-        self.mensagens = ["Bom dia! Sou o bot do Sírio Libanes.", 
-        "1- Qual seu sexo: () homem () mulher\n 2- Tem idade acima de 60 anos? () sim ()não\n3- esta com sintomas de tosse? () sim () não\n4- está com febre? () Sim () não\n5- está com a garganta seca? () sim () não\n6- está com falta de ar? () sim () não\n7- está com dor de cabeça? () sim () não\n8- teve contato com outra pessoa que teve covid conformado? () sim () não "]
-        self.grupos = ["teste"]
+        #self.mensagens = ["Oi tudo bem?? Eu sou a beta, sua amiga robô do Hospital Sírio. Vou te ajudar a fazer o teste automático para Covid-19. :))", 
+        #"Mas vamos ao seu teste agora :D. Ele vai ser assim: Vou te fazer algumas perguntas, e você precisa me responder elas com uma das duas opções que estão nela. E pronto, é só isso :D",
+        #"1- Qual seu sexo? (homem)  (mulher)",
+        #"2- Tem idade acima de 60 anos? (Sim) (Não)", 
+        #"3- Esta com tosse? (Sim ) (Não)",
+        #"4- Está sentindo febre? (Sim) (Não) ", 
+        #"5- Está com a garganta seca? (Sim) (Não)", 
+        #"6- Está com falta de ar? (Sim) (Não)", 
+        #"7- Está com dor de cabeça? (Sim) (Não)", 
+        #"8- Teve contato com outra pessoa que teve esses mesmos sintomas? (Sim) (Não)"]
+
+        self.mensagens = ["Olá! Calculei o seu resultado! A chance de você estar infectado é de 20,8% com uma variação de 0,4%. Que bom que você não deve estar doente :)) Mas não deixe de tomar os cuidados necessários! Use máscara ao sair, lave sempre as mãos. Vamos nos proteger! Agora só mais uma perguntinha, você gostaria de contribuir com nossa pesquisa? Se sim iremos enviar um questionário socioeconômico",
+        "Qual seu nome?",
+        "Qual seu CPF? ",
+        "Qual o endereço da sua casa?",
+        "Quantas pessoas moram com você?",
+        "Quantos são adultos?",
+        "E sobre os idosos, quantos são? :D",
+        "Alguém da residência fez teste para Covid em um postinho de saúde?",
+        "Gostaria que o Sírio te enviasse mais informações sobre saúde e Covid? :D"]
+
+        self.grupos = ["Hospital Sírio Libanês"]
         options = webdriver.ChromeOptions()
         options.add_argument('lang=pt-br')
         self.driver = webdriver.Chrome(executable_path=r'./chromedriver.exe')
@@ -34,7 +53,7 @@ class WhatsappBot:
                 botao_enviar = self.driver.find_element_by_xpath("//span[@data-icon='send']")
                 time.sleep(3)
                 botao_enviar.click()
-                time.sleep(5)
+                time.sleep(3)
 
 bot = WhatsappBot()
 bot.EnviarMensagens()
